@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import saveSVG  from 'save-svg-as-png';
 
 
 const BrushStroke1 = (props) => {
@@ -10,19 +11,39 @@ const BrushStroke1 = (props) => {
   return (path);
 }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-      </header>
-      <section className="canvas-container">
-        <svg >
-          <BrushStroke1 translateX="0" translateY="0"/>
-          <BrushStroke1 translateX="100" translateY="100"/>
-        </svg>
-      </section>
-    </div>
-  );
+
+
+class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.downloadbleSVG = React.createRef();
+    this.state={svgURI: ''};
+  }
+
+  componentDidMount () {
+    saveSVG.svgAsDataUri(this.downloadbleSVG.current)
+      .then(uri => this.setState({svgURI: uri}))
+      .then(() => console.log(this.state.svgURI));
+    
+  }
+
+  render () {
+    return (
+      <div className="App">
+        <header className="App-header">
+        </header>
+        <section className="canvas-container">
+          <svg ref={this.downloadbleSVG}>
+            <BrushStroke1 translateX="0" translateY="0"/>
+            <BrushStroke1 translateX="100" translateY="100"/>
+          </svg>
+        </section>
+  
+        <a href={this.state.svgURI} download>Download</a>
+      </div>
+    );
+  }
 }
 
 export default App;
