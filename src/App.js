@@ -1,6 +1,27 @@
 import React from 'react';
+import { useDispatch, useSelector, connect } from "react-redux";
+import { setSVGUri, setStrokeLength } from './actions';
 import './App.scss';
 import saveSVG  from 'save-svg-as-png';
+
+function multiplyrrayNumbers (array, multiplier) {
+
+}
+
+// Converts an array of numbers or characters to an svg path string
+function mapArrayToString (array) {
+  let path = '';
+  array.map(item => path.concat(item));
+  return path;
+}
+
+const BrushStroke1 = props => {
+  const strokeLength = useSelector(state => state.strokeLength);
+
+  const move=` translate(${props.translateX},${props.translateY}) `;
+  let path = <path d={`M0,13S29,0,36,0,${strokeLength},13,${strokeLength},13s-29,3-47,3C27,16,0,13,0,13Z`} fill="#262626" transform={move}/>;
+  return (path);
+}
 
 const BrushStrokes = props => {
   let i = 0;
@@ -18,14 +39,6 @@ const BrushStrokes = props => {
   return (
     brushStrokes.map( stroke => {return stroke})
   );
-
-}
-
-const BrushStroke1 = props => {
-  const move=` translate(${props.translateX},${props.translateY}) `;
-
-  let path = <path d="M0,13S29.15,0,36.79,0,89.62,13,89.62,13s-29,3-47.32,3C27,16,0,13,0,13Z" fill="#262626" transform={move}/>;
-  return (path);
 }
 
 const Edge = props => {
@@ -58,9 +71,7 @@ const Edge = props => {
       <BrushStrokes strokeNumber={4} rectConfig={props.rectConfig}/>
      </g>
   )
-
 }
-
 
 
 class App extends React.Component {
@@ -68,12 +79,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.downloadbleSVG = React.createRef();
-    this.state={
-      svgURI: '',
-      strokelength: 20,
-      strokeWidth: 5,
-      strokeNumber: 6
-    };
     this.rectConfig={
       height: 300,
       width: 300, 
@@ -82,14 +87,18 @@ class App extends React.Component {
     }
   }
 
-  componentDidMount () {
+  handleSVGUriChange = () => {
     saveSVG.svgAsDataUri(this.downloadbleSVG.current)
-      .then(uri => this.setState({svgURI: uri}));
+    .then(uri => this.props.setSVGUri(uri));
   }
 
-  setStrokeLength = (event) => {
-    console.log(event.target.value);
-    this.setState({strokelength: event.target.value})
+  componentDidMount () {
+   this.handleSVGUriChange();
+  }
+
+  handleSetStrokeLength = (event) => {
+    this.props.setStrokeLength(event.target.value);
+
   }
 
   render () {
@@ -109,21 +118,32 @@ class App extends React.Component {
             <Edge side="right" rectConfig={this.rectConfig}/>
             <Edge side="bottom" rectConfig={this.rectConfig}/>
             <Edge side="left" rectConfig={this.rectConfig}/>
-
           </svg>
         </section>
 
         <section className="stroke-settings">
-          <input type="range" min="1" max="100" value={this.state.strokelength} 
+          <input type="range" min="1" max="100" value={this.props.strokeLength} 
           id="strokeLength" 
-          onChange={this.setStrokeLength}/>
+          onChange={this.handleSetStrokeLength}/>
           <label htmlFor="strokeLength">Stroke length</label>
         </section>
 
-        <a href={this.state.svgURI} download>Download</a>
+        <a href={this.props.svgURI} onClick={this.handleSVGUriChange} download>Download</a>
       </div>
     );
   }
 }
 
-export default App;
+function select(state) {
+  return {
+    svgURI: state.svgURI,
+    strokeLength: state.strokeLength,
+    strokeWidth: state.strokeWidth,
+    strokeNumber: state.strokeNumber
+  };
+}
+
+export default connect(
+  select,
+  { setSVGUri, setStrokeLength }
+)(App)
