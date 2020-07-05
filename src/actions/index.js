@@ -11,3 +11,11 @@ export function setSVGUri(payload) {
 export function setStrokeLength(payload) {
     return { type: SET_STROKE_LENGTH, payload }
 }
+
+export function setStrokeWidth(payload) {
+  return { type: SET_STROKE_WIDTH, payload }
+}
+
+export function setStrokeNumber(payload) {
+  return { type: SET_STROKE_NUMBER, payload }
+}

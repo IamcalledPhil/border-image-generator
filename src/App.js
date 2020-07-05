@@ -3,23 +3,20 @@ import { useDispatch, useSelector, connect } from "react-redux";
 import { setSVGUri, setStrokeLength } from './actions';
 import './App.scss';
 import saveSVG  from 'save-svg-as-png';
+import {assignDValueFromStrokeType, assignTranslateYFromStrokeType, assignTranslateXFromStrokeType} from './modules/svg-helpers';
 
-function multiplyrrayNumbers (array, multiplier) {
 
-}
 
-// Converts an array of numbers or characters to an svg path string
-function mapArrayToString (array) {
-  let path = '';
-  array.map(item => path.concat(item));
-  return path;
-}
-
-const BrushStroke1 = props => {
+const BrushStroke = props => {
   const strokeLength = useSelector(state => state.strokeLength);
+  const strokeWidth = useSelector(state => state.strokeWidth);
+  const translateX= assignTranslateXFromStrokeType(props.strokeType, props.index, props.translateX);
+  const translateY= assignTranslateYFromStrokeType(props.strokeType, props.index);
+  // TODO: find a way to calculate magic number for second translate
+  const move=` translate(${translateX},${translateY}) translate(${strokeLength*-20}, 0) scale(${strokeLength},-1) `;
+  const d = assignDValueFromStrokeType(props.strokeType);
 
-  const move=` translate(${props.translateX},${props.translateY}) `;
-  let path = <path d={`M0,13S29,0,36,0,${strokeLength},13,${strokeLength},13s-29,3-47,3C27,16,0,13,0,13Z`} fill="#262626" transform={move}/>;
+  const path = <path d={d} fill="#000000" transform={move}/>;
   return (path);
 }
 
@@ -29,8 +26,9 @@ const BrushStrokes = props => {
   while (i < props.strokeNumber) {
     // at the moment only supports square, would need to add height support for rectangle
     brushStrokes.push(
-      <BrushStroke1 translateX={i*(props.rectConfig.width/props.strokeNumber)} 
-        translateY={i % 2 === 0 ? 0 : 10}
+      <BrushStroke translateX={i*(props.rectConfig.width/props.strokeNumber)} 
+        strokeType={props.strokeType}
+        index={i}
         key={i}/>
     );
     i++;
@@ -68,7 +66,12 @@ const Edge = props => {
   return (
     // translate per side, rotate per side, scale to flip so it goes outwards from rect edge
     <g transform={`translate(${translateEdgeX},${translateEdgeY}) rotate(${angle}) scale(1,-1)`}>
-      <BrushStrokes strokeNumber={4} rectConfig={props.rectConfig}/>
+      <BrushStrokes strokeNumber={6} rectConfig={props.rectConfig} strokeType={1}/>
+      <BrushStrokes strokeNumber={6} rectConfig={props.rectConfig} strokeType={2}/>
+      <BrushStrokes strokeNumber={5} rectConfig={props.rectConfig} strokeType={3}/>
+      <BrushStrokes strokeNumber={3} rectConfig={props.rectConfig} strokeType={4}/>
+      <BrushStrokes strokeNumber={4} rectConfig={props.rectConfig} strokeType={5}/>
+
      </g>
   )
 }
@@ -122,8 +125,9 @@ class App extends React.Component {
         </section>
 
         <section className="stroke-settings">
-          <input type="range" min="1" max="100" value={this.props.strokeLength} 
+          <input type="range" min="0.5" max="1.5" value={this.props.strokeLength} 
           id="strokeLength" 
+          step="0.1"
           onChange={this.handleSetStrokeLength}/>
           <label htmlFor="strokeLength">Stroke length</label>
         </section>

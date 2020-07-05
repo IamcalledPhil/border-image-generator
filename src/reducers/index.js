@@ -2,8 +2,8 @@ import { SET_SVG_URI, SET_STROKE_LENGTH, SET_STROKE_WIDTH, SET_STROKE_NUMBER } f
 
 const initialState = {
   svgURI: '',
-  strokeLength: 20,
-  strokeWidth: 5,
+  strokeLength: 1,
+  strokeWidth: 1,
   strokeNumber: 6
   };
   
