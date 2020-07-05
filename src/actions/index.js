@@ -1,4 +1,12 @@
-import { SET_SVG_URI, SET_STROKE_LENGTH, SET_STROKE_WIDTH, SET_STROKE_NUMBER } from "../constants/action-types";
+import { SET_SVG_URI,
+   SET_STROKE_LENGTH, 
+   SET_STROKE_WIDTH, 
+   SET_FIRST_STROKE_NUMBER,
+   SET_SECOND_STROKE_NUMBER,
+   SET_THIRD_STROKE_NUMBER,
+   SET_FOURTH_STROKE_NUMBER,
+   SET_FIFTH_STROKE_NUMBER
+  } from "../constants/action-types";
 
 /**
 * Action creators for user actions
@@ -16,6 +24,22 @@ export function setStrokeWidth(payload) {
   return { type: SET_STROKE_WIDTH, payload }
 }
 
-export function setStrokeNumber(payload) {
-  return { type: SET_STROKE_NUMBER, payload }
+export function setFirstStrokeNumber(payload) {
+  return { type: SET_FIRST_STROKE_NUMBER, payload }
+}
+
+export function setSecondStrokeNumber(payload) {
+  return { type: SET_SECOND_STROKE_NUMBER, payload }
+}
+
+export function setThirdStrokeNumber(payload) {
+  return { type: SET_THIRD_STROKE_NUMBER, payload }
+}
+
+export function setFourthStrokeNumber(payload) {
+  return { type: SET_FOURTH_STROKE_NUMBER, payload }
+}
+
+export function setFifthStrokeNumber(payload) {
+  return { type: SET_FIFTH_STROKE_NUMBER, payload }
 }

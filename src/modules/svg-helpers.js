@@ -73,3 +73,27 @@ export function assignTranslateXFromStrokeType (strokeType, index, x){
 
     return x;
 }
+
+export function translateEdge (side, x, y) {
+  let angle = 0;
+
+  switch(side) {
+    case "right":
+      angle = 90;
+      x = x + 300;
+      break;
+    case "bottom":
+        angle = 180;
+        y = y + 300;
+        x = x + 300;
+      break;
+    case "left":
+      angle = 270;
+      y = y + 300;
+      break;
+    default: // on top
+    angle = 0;
+  }
+
+  return {angle, x, y};
+}

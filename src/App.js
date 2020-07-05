@@ -1,9 +1,22 @@
 import React from 'react';
 import { useDispatch, useSelector, connect } from "react-redux";
-import { setSVGUri, setStrokeLength } from './actions';
+import { setSVGUri, 
+  setStrokeLength, 
+  setStrokeWidth, 
+  setFirstStrokeNumber,
+  setSecondStrokeNumber,
+  setThirdStrokeNumber,
+  setFourthStrokeNumber,
+  setFifthStrokeNumber
+} from './actions';
 import './App.scss';
 import saveSVG  from 'save-svg-as-png';
-import {assignDValueFromStrokeType, assignTranslateYFromStrokeType, assignTranslateXFromStrokeType} from './modules/svg-helpers';
+import {
+        assignDValueFromStrokeType,
+        assignTranslateYFromStrokeType,
+        assignTranslateXFromStrokeType,
+        translateEdge
+      } from './modules/svg-helpers';
 
 
 
@@ -13,7 +26,7 @@ const BrushStroke = props => {
   const translateX= assignTranslateXFromStrokeType(props.strokeType, props.index, props.translateX);
   const translateY= assignTranslateYFromStrokeType(props.strokeType, props.index);
   // TODO: find a way to calculate magic number for second translate
-  const move=` translate(${translateX},${translateY}) translate(${strokeLength*-20}, 0) scale(${strokeLength},-1) `;
+  const move=` translate(${translateX},${translateY}) translate(${strokeLength*-(props.rectWidth/15)}, 0) scale(${strokeLength},-${strokeWidth}) `;
   const d = assignDValueFromStrokeType(props.strokeType);
 
   const path = <path d={d} fill="#000000" transform={move}/>;
@@ -27,6 +40,7 @@ const BrushStrokes = props => {
     // at the moment only supports square, would need to add height support for rectangle
     brushStrokes.push(
       <BrushStroke translateX={i*(props.rectConfig.width/props.strokeNumber)} 
+        rectWidth={props.rectConfig.width}
         strokeType={props.strokeType}
         index={i}
         key={i}/>
@@ -40,38 +54,22 @@ const BrushStrokes = props => {
 }
 
 const Edge = props => {
-  let angle = 0;
-  //initially move the edge to where the rectangle is
-  let translateEdgeX = props.rectConfig.x;
-  let translateEdgeY = props.rectConfig.y;
+  const firstStrokeNumber = useSelector(state => state.firstStrokeNumber);
+  const secondStrokeNumber = useSelector(state => state.secondStrokeNumber);
+  const thirdStrokeNumber = useSelector(state => state.thirdStrokeNumber);
+  const fourthStrokeNumber = useSelector(state => state.fourthStrokeNumber);
+  const fifthStrokeNumber = useSelector(state => state.fifthStrokeNumber);
 
-  switch(props.side) {
-    case "right":
-      angle = 90;
-      translateEdgeX = translateEdgeX + 300;
-      break;
-    case "bottom":
-        angle = 180;
-        translateEdgeY = translateEdgeY + 300;
-        translateEdgeX = translateEdgeX + 300;
-      break;
-    case "left":
-      angle = 270;
-      translateEdgeY = translateEdgeY + 300;
-      break;
-    default: // on top
-    angle = 0;
-  }
+  const translateConfig = translateEdge (props.side, props.rectConfig.x, props.rectConfig.y)
 
   return (
     // translate per side, rotate per side, scale to flip so it goes outwards from rect edge
-    <g transform={`translate(${translateEdgeX},${translateEdgeY}) rotate(${angle}) scale(1,-1)`}>
-      <BrushStrokes strokeNumber={6} rectConfig={props.rectConfig} strokeType={1}/>
-      <BrushStrokes strokeNumber={6} rectConfig={props.rectConfig} strokeType={2}/>
-      <BrushStrokes strokeNumber={5} rectConfig={props.rectConfig} strokeType={3}/>
-      <BrushStrokes strokeNumber={3} rectConfig={props.rectConfig} strokeType={4}/>
-      <BrushStrokes strokeNumber={4} rectConfig={props.rectConfig} strokeType={5}/>
-
+    <g transform={`translate(${translateConfig.x},${translateConfig.y}) rotate(${translateConfig.angle}) scale(1,-1)`}>
+      <BrushStrokes strokeNumber={firstStrokeNumber} rectConfig={props.rectConfig} strokeType={1}/>
+      <BrushStrokes strokeNumber={secondStrokeNumber} rectConfig={props.rectConfig} strokeType={2}/>
+      <BrushStrokes strokeNumber={thirdStrokeNumber} rectConfig={props.rectConfig} strokeType={3}/>
+      <BrushStrokes strokeNumber={fourthStrokeNumber} rectConfig={props.rectConfig} strokeType={4}/>
+      <BrushStrokes strokeNumber={fifthStrokeNumber} rectConfig={props.rectConfig} strokeType={5}/>
      </g>
   )
 }
@@ -101,7 +99,32 @@ class App extends React.Component {
 
   handleSetStrokeLength = (event) => {
     this.props.setStrokeLength(event.target.value);
+  }
 
+  handleSetStrokeWidth = (event) => {
+    this.props.setStrokeWidth(event.target.value);
+  }
+
+  handleSetStrokeNumber = (event) => {
+    switch (event.target.id){
+      case "firstStrokeNumber": 
+        this.props.setFirstStrokeNumber(event.target.value);
+        break;
+      case "secondStrokeNumber": 
+        this.props.setSecondStrokeNumber(event.target.value);
+        break;
+      case "thirdStrokeNumber": 
+        this.props.setThirdStrokeNumber(event.target.value);
+        break;
+      case "fourthStrokeNumber": 
+        this.props.setFourthStrokeNumber(event.target.value);
+        break;
+      case "fifthStrokeNumber": 
+        this.props.setFifthStrokeNumber(event.target.value);
+        break;
+      default: 
+        console.log("Error, no stroke number recognised");
+    }
   }
 
   render () {
@@ -122,17 +145,57 @@ class App extends React.Component {
             <Edge side="bottom" rectConfig={this.rectConfig}/>
             <Edge side="left" rectConfig={this.rectConfig}/>
           </svg>
+          <a href={this.props.svgURI} onClick={this.handleSVGUriChange} download>Download</a>
+
         </section>
 
         <section className="stroke-settings">
-          <input type="range" min="0.5" max="1.5" value={this.props.strokeLength} 
-          id="strokeLength" 
-          step="0.1"
-          onChange={this.handleSetStrokeLength}/>
-          <label htmlFor="strokeLength">Stroke length</label>
+          <div className="settings-bar">
+            <input type="range" min="0.5" max="1.4" value={this.props.strokeLength} 
+            id="strokeLength" 
+            step="0.1"
+            onChange={this.handleSetStrokeLength}/>
+            <label htmlFor="strokeLength">Stroke length</label>
+          </div>
+          <div className="settings-bar">
+            <input type="range" min="0.7" max="1.8" value={this.props.strokeWidth} 
+            id="strokeWidth" 
+            step="0.1"
+            onChange={this.handleSetStrokeWidth}/>
+            <label htmlFor="strokeWidth">Stroke width</label>
+          </div>
+          <div className="settings-bar">
+            <input type="range" min="0" max="10" value={this.props.firstStrokeNumber} 
+            id="firstStrokeNumber" 
+            onChange={this.handleSetStrokeNumber}/>
+            <label htmlFor="firstStrokeNumber">Number of type 1 strokes per side</label>
+          </div>
+          <div className="settings-bar">
+            <input type="range" min="0" max="10" value={this.props.secondStrokeNumber} 
+            id="secondStrokeNumber" 
+            onChange={this.handleSetStrokeNumber}/>
+            <label htmlFor="secondStrokeNumber">Number of type 2 strokes per side</label>
+          </div>
+          <div className="settings-bar">
+            <input type="range" min="0" max="10" value={this.props.thirdStrokeNumber} 
+            id="thirdStrokeNumber" 
+            onChange={this.handleSetStrokeNumber}/>
+            <label htmlFor="thirdStrokeNumber">Number of type 3 strokes per side</label>
+          </div>
+          <div className="settings-bar">
+            <input type="range" min="0" max="8" value={this.props.fourthStrokeNumber} 
+            id="fourthStrokeNumber" 
+            onChange={this.handleSetStrokeNumber}/>
+            <label htmlFor="fourthStrokeNumber">Number of type 4 strokes per side</label>
+          </div>
+          <div className="settings-bar">
+            <input type="range" min="0" max="10" value={this.props.fifthStrokeNumber} 
+            id="fifthStrokeNumber" 
+            onChange={this.handleSetStrokeNumber}/>
+            <label htmlFor="fifthStrokeNumber">Number of type 5 strokes per side</label>
+          </div>
         </section>
 
-        <a href={this.props.svgURI} onClick={this.handleSVGUriChange} download>Download</a>
       </div>
     );
   }
@@ -143,11 +206,23 @@ function select(state) {
     svgURI: state.svgURI,
     strokeLength: state.strokeLength,
     strokeWidth: state.strokeWidth,
-    strokeNumber: state.strokeNumber
+    firstStrokeNumber: state.firstStrokeNumber,
+    secondStrokeNumber: state.secondStrokeNumber,
+    thirdStrokeNumber: state.thirdStrokeNumber,
+    fourthStrokeNumber: state.fourthStrokeNumber,
+    fithStrokeNumber: state.fithStrokeNumber,
   };
 }
 
 export default connect(
   select,
-  { setSVGUri, setStrokeLength }
+  { setSVGUri, 
+    setStrokeLength, 
+    setStrokeWidth, 
+    setFirstStrokeNumber, 
+    setSecondStrokeNumber,
+    setThirdStrokeNumber,
+    setFourthStrokeNumber,
+    setFifthStrokeNumber
+  }
 )(App)
