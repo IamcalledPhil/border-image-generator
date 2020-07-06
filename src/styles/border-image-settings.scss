@@ -1,0 +1,12 @@
+.border-image-settings {
+  display: flex;
+  flex-direction: row;
+  margin: 2em;
+  width: 100%;
+
+  .demo-div {
+    width: 40vw;
+    height: 40vw;
+    margin: 2em;
+  }
+}

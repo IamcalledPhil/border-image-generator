@@ -5,11 +5,12 @@ import { SET_SVG_URI,
    SET_SECOND_STROKE_NUMBER,
    SET_THIRD_STROKE_NUMBER,
    SET_FOURTH_STROKE_NUMBER,
-   SET_FIFTH_STROKE_NUMBER
+   SET_FIFTH_STROKE_NUMBER,
+   SET_TOP_BORDER_WIDTH
   } from "../constants/action-types";
 
 /**
-* Action creators for user actions
+* Action creators for image creator
 */
 
 export function setSVGUri(payload) {
@@ -42,4 +43,12 @@ export function setFourthStrokeNumber(payload) {
 
 export function setFifthStrokeNumber(payload) {
   return { type: SET_FIFTH_STROKE_NUMBER, payload }
+}
+
+/**
+* Action creators for border image settings
+*/
+
+export function setTopBorderWidth(payload) {
+  return { type: SET_TOP_BORDER_WIDTH, payload }
 }

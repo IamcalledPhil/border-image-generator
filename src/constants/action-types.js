@@ -1,3 +1,4 @@
+// image creator action types
 export const SET_SVG_URI = "SET_SVG_URI";
 export const SET_STROKE_LENGTH = "SET_STROKE_LENGTH";
 export const SET_STROKE_WIDTH = "SET_STROKE_WIDTH";
@@ -6,3 +7,6 @@ export const SET_SECOND_STROKE_NUMBER = "SET_SECOND_STROKE_NUMBER";
 export const SET_THIRD_STROKE_NUMBER = "SET_THIRD_STROKE_NUMBER";
 export const SET_FOURTH_STROKE_NUMBER = "SET_FOURTH_STROKE_NUMBER";
 export const SET_FIFTH_STROKE_NUMBER = "SET_FIFTH_STROKE_NUMBER";
+
+// border image settings action types
+export const SET_TOP_BORDER_WIDTH = "SET_TOP_BORDER_WIDTH";
