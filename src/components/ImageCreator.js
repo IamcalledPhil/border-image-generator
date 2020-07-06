@@ -99,10 +99,12 @@ class ImageCreator extends React.Component {
 
   handleSetStrokeLength = (event) => {
     this.props.setStrokeLength(event.target.value);
+    this.handleSVGUriChange();
   }
 
   handleSetStrokeWidth = (event) => {
     this.props.setStrokeWidth(event.target.value);
+    this.handleSVGUriChange();
   }
 
   handleSetStrokeNumber = (event) => {
@@ -125,6 +127,7 @@ class ImageCreator extends React.Component {
       default: 
         console.log("Error, no stroke number recognised");
     }
+    this.handleSVGUriChange();
   }
 
   render () {
