@@ -1,4 +1,5 @@
 import { SET_SVG_URI, 
+  SET_IMAGE_COLOR,
   SET_STROKE_LENGTH, 
   SET_STROKE_WIDTH, 
   SET_FIRST_STROKE_NUMBER,
@@ -10,6 +11,7 @@ import { SET_SVG_URI,
 
 const initialState = {
   svgURI: '',
+  imageColor: '#000000',
   strokeLength: 1,
   strokeWidth: 1,
   firstStrokeNumber: 6,
@@ -58,6 +60,10 @@ const initialState = {
     } else if (action.type === SET_FIFTH_STROKE_NUMBER){ 
       return Object.assign({}, state, {
         fifthStrokeNumber: action.payload
+      });
+    }  else if (action.type === SET_IMAGE_COLOR){ 
+      return Object.assign({}, state, {
+        imageColor: action.payload
       });
     } 
     return state;

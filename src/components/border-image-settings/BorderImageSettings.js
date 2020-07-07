@@ -9,6 +9,7 @@ import '../../styles/border-image-settings.scss';
 
 const BorderImageSettings = () => {
   const svgURI = useSelector(state => state.imageCreator.svgURI);
+  const imageColor = useSelector(state => state.imageCreator.imageColor);
   const borderRepeat = useSelector(state => state.borderImage.borderImageRepeat);
   const borderWidth = useSelector(state => state.borderImage.borderWidth);
   const borderOutset = useSelector(state => state.borderImage.borderImageOutset);
@@ -22,7 +23,7 @@ const BorderImageSettings = () => {
     "borderImageSlice": `${borderSlice.top} ${borderSlice.right} ${borderSlice.bottom} ${borderSlice.left}`,
     "borderImageRepeat": `${borderRepeat} ${borderRepeat}`,
     // should be able to set background color too in case don't want outset
-    "backgroundColor": `#000000`
+    "backgroundColor": `${imageColor}`
   }
 
   return (

@@ -1,4 +1,5 @@
 import { SET_SVG_URI,
+  SET_IMAGE_COLOR,
    SET_STROKE_LENGTH, 
    SET_STROKE_WIDTH, 
    SET_FIRST_STROKE_NUMBER,
@@ -27,6 +28,10 @@ import { SET_SVG_URI,
 
 export function setSVGUri(payload) {
     return { type: SET_SVG_URI, payload }
+}
+
+export function setImageColor(payload) {
+    return { type: SET_IMAGE_COLOR, payload }
 }
 
 export function setStrokeLength(payload) {

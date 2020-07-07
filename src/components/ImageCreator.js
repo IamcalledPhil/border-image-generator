@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, connect } from "react-redux";
 import { setSVGUri, 
+  setImageColor,
   setStrokeLength, 
   setStrokeWidth, 
   setFirstStrokeNumber,
@@ -22,6 +23,7 @@ import { SettingsSlider } from './SettingsInputs';
 
 
 const BrushStroke = props => {
+  const imageColor = useSelector(state => state.imageCreator.imageColor);
   const strokeLength = useSelector(state => state.imageCreator.strokeLength);
   const strokeWidth = useSelector(state => state.imageCreator.strokeWidth);
   const translateX= assignTranslateXFromStrokeType(props.strokeType, props.index, props.translateX);
@@ -30,7 +32,7 @@ const BrushStroke = props => {
   const move=` translate(${translateX},${translateY}) translate(${strokeLength*-(props.rectWidth/15)}, 0) scale(${strokeLength},-${strokeWidth}) `;
   const d = assignDValueFromStrokeType(props.strokeType);
 
-  const path = <path d={d} fill="#000000" transform={move}/>;
+  const path = <path d={d} fill={imageColor} transform={move}/>;
   return (path);
 }
 
@@ -98,6 +100,11 @@ class ImageCreator extends React.Component {
    this.handleSVGUriChange();
   }
 
+  handleImageColorChange = (event) => {
+    this.props.setImageColor(event.target.value);
+    this.handleSVGUriChange();
+  }
+
   handleSetStrokeLength = (event) => {
     this.props.setStrokeLength(event.target.value);
     this.handleSVGUriChange();
@@ -141,7 +148,7 @@ class ImageCreator extends React.Component {
               y={this.rectConfig.y} 
               width={this.rectConfig.width} 
               height={this.rectConfig.height} 
-              style={{fill:'black'}}/>
+              style={{fill:this.props.imageColor}}/>
             <Edge side="top" rectConfig={this.rectConfig}/>
             <Edge side="right" rectConfig={this.rectConfig}/>
             <Edge side="bottom" rectConfig={this.rectConfig}/>
@@ -201,6 +208,12 @@ class ImageCreator extends React.Component {
             value={this.props.fifthStrokeNumber}
             onChange={this.handleSetStrokeNumber}
             label="Number of type 5 strokes per side"/>
+            <div>
+              <label for="colorPicker">Color:</label>
+                <input type="color" id="colorPicker" name="colorPicker"
+                  onChange={this.handleImageColorChange}
+                  value={this.props.imageColor}/>
+            </div> 
         </section>
 
       </div>
@@ -211,6 +224,7 @@ class ImageCreator extends React.Component {
 function select(state) {
   return {
     svgURI: state.imageCreator.svgURI,
+    imageColor: state.imageCreator.imageColor,
     strokeLength: state.imageCreator.strokeLength,
     strokeWidth: state.imageCreator.strokeWidth,
     firstStrokeNumber: state.imageCreator.firstStrokeNumber,
@@ -224,6 +238,7 @@ function select(state) {
 export default connect(
   select,
   { setSVGUri, 
+    setImageColor,
     setStrokeLength, 
     setStrokeWidth, 
     setFirstStrokeNumber, 
