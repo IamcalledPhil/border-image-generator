@@ -17,6 +17,7 @@ import {
         assignTranslateXFromStrokeType,
         translateEdge
       } from '../modules/svg-helpers';
+import { SettingsSlider } from './SettingsInputs';
 
 
 
@@ -151,50 +152,55 @@ class ImageCreator extends React.Component {
         </section>
 
         <section className="stroke-settings">
-          <div className="settings-bar">
-            <input type="range" min="0.5" max="1.4" value={this.props.strokeLength} 
-            id="strokeLength" 
-            step="0.1"
-            onChange={this.handleSetStrokeLength}/>
-            <label htmlFor="strokeLength">Stroke length</label>
-          </div>
-          <div className="settings-bar">
-            <input type="range" min="0.7" max="1.8" value={this.props.strokeWidth} 
-            id="strokeWidth" 
-            step="0.1"
-            onChange={this.handleSetStrokeWidth}/>
-            <label htmlFor="strokeWidth">Stroke width</label>
-          </div>
-          <div className="settings-bar">
-            <input type="range" min="0" max="10" value={this.props.firstStrokeNumber} 
-            id="firstStrokeNumber" 
-            onChange={this.handleSetStrokeNumber}/>
-            <label htmlFor="firstStrokeNumber">Number of type 1 strokes per side</label>
-          </div>
-          <div className="settings-bar">
-            <input type="range" min="0" max="10" value={this.props.secondStrokeNumber} 
-            id="secondStrokeNumber" 
-            onChange={this.handleSetStrokeNumber}/>
-            <label htmlFor="secondStrokeNumber">Number of type 2 strokes per side</label>
-          </div>
-          <div className="settings-bar">
-            <input type="range" min="0" max="10" value={this.props.thirdStrokeNumber} 
-            id="thirdStrokeNumber" 
-            onChange={this.handleSetStrokeNumber}/>
-            <label htmlFor="thirdStrokeNumber">Number of type 3 strokes per side</label>
-          </div>
-          <div className="settings-bar">
-            <input type="range" min="0" max="8" value={this.props.fourthStrokeNumber} 
-            id="fourthStrokeNumber" 
-            onChange={this.handleSetStrokeNumber}/>
-            <label htmlFor="fourthStrokeNumber">Number of type 4 strokes per side</label>
-          </div>
-          <div className="settings-bar">
-            <input type="range" min="0" max="10" value={this.props.fifthStrokeNumber} 
-            id="fifthStrokeNumber" 
-            onChange={this.handleSetStrokeNumber}/>
-            <label htmlFor="fifthStrokeNumber">Number of type 5 strokes per side</label>
-          </div>
+          <SettingsSlider
+            type="length"
+            position="stroke"
+            range={{min: 0.5, max: 1.4}}
+            value={this.props.strokeLength}
+            onChange={this.handleSetStrokeLength}
+            label="Stroke length"/>
+          <SettingsSlider
+            type="width"
+            position="stroke"
+            range={{min: 0.7, max: 2.1}}
+            value={this.props.strokeWidth}
+            onChange={this.handleSetStrokeWidth}
+            label="Stroke width"/>
+          <SettingsSlider
+            type="StrokeNumber"
+            position="first"
+            range={{min: 0, max: 10}}
+            value={this.props.firstStrokeNumber}
+            onChange={this.handleSetStrokeNumber}
+            label="Number of type 1 strokes per side"/>
+          <SettingsSlider
+            type="StrokeNumber"
+            position="second"
+            range={{min: 0, max: 10}}
+            value={this.props.secondStrokeNumber}
+            onChange={this.handleSetStrokeNumber}
+            label="Number of type 2 strokes per side"/>
+          <SettingsSlider
+            type="StrokeNumber"
+            position="third"
+            range={{min: 0, max: 10}}
+            value={this.props.thirdStrokeNumber}
+            onChange={this.handleSetStrokeNumber}
+            label="Number of type 3 strokes per side"/>
+          <SettingsSlider
+            type="StrokeNumber"
+            position="fourth"
+            range={{min: 0, max: 10}}
+            value={this.props.fourthStrokeNumber}
+            onChange={this.handleSetStrokeNumber}
+            label="Number of type 4 strokes per side"/>
+          <SettingsSlider
+            type="StrokeNumber"
+            position="fifth"
+            range={{min: 0, max: 10}}
+            value={this.props.fifthStrokeNumber}
+            onChange={this.handleSetStrokeNumber}
+            label="Number of type 5 strokes per side"/>
         </section>
 
       </div>

@@ -1,8 +1,9 @@
 .border-image-settings {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   margin: 2em;
-  width: 100%;
+  width: 50vw;
 
   .demo-div {
     width: 40vw;

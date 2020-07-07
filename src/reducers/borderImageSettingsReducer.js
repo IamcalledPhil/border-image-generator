@@ -6,7 +6,12 @@ import {
   SET_TOP_BORDER_OUTSET,
   SET_RIGHT_BORDER_OUTSET,
   SET_BOTTOM_BORDER_OUTSET,
-  SET_LEFT_BORDER_OUTSET  
+  SET_LEFT_BORDER_OUTSET,
+  SET_TOP_BORDER_SLICE,
+  SET_RIGHT_BORDER_SLICE,
+  SET_BOTTOM_BORDER_SLICE,
+  SET_LEFT_BORDER_SLICE,
+  SET_REPEAT
 } from "../constants/action-types";
 
 const initialState = {
@@ -21,7 +26,14 @@ const initialState = {
       right: "50px",
       bottom: "50px",
       left: "50px"
-    }
+    },
+    borderImageSlice: { 
+      top: "110",
+      right: "110",
+      bottom: "110",
+      left: "110"
+    },
+    borderImageRepeat: "stretch"
 };
   
 /**
@@ -83,10 +95,42 @@ const initialState = {
       };
     } else if (action.type === SET_LEFT_BORDER_OUTSET) {
       return {...state, 
-        borderImageOutset: {
-          ...state.borderImageOutset,
+        borderImageSlice: {
+          ...state.borderImageSlice,
           left: action.payload
         } 
+      };
+    }  else if (action.type === SET_TOP_BORDER_SLICE) {
+      return {...state, 
+        borderImageSlice: {
+          ...state.borderImageSlice,
+          top: action.payload
+        } 
+      };
+    } else if (action.type === SET_RIGHT_BORDER_SLICE) {
+      return {...state, 
+        borderImageSlice: {
+          ...state.borderImageSlice,
+          right: action.payload
+        } 
+      };
+    } else if (action.type === SET_BOTTOM_BORDER_SLICE) {
+      return {...state, 
+        borderImageSlice: {
+          ...state.borderImageSlice,
+          bottom: action.payload
+        } 
+      };
+    } else if (action.type === SET_LEFT_BORDER_SLICE) {
+      return {...state, 
+        borderImageSlice: {
+          ...state.borderImageSlice,
+          left: action.payload
+        } 
+      };
+    } else if (action.type === SET_REPEAT) {
+      return {...state, 
+        borderImageRepeat: action.payload
       };
     } 
     return state;

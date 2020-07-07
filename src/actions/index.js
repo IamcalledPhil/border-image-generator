@@ -13,7 +13,12 @@ import { SET_SVG_URI,
    SET_TOP_BORDER_OUTSET,
    SET_RIGHT_BORDER_OUTSET,
    SET_BOTTOM_BORDER_OUTSET,
-   SET_LEFT_BORDER_OUTSET  
+   SET_LEFT_BORDER_OUTSET,
+   SET_TOP_BORDER_SLICE,
+   SET_RIGHT_BORDER_SLICE,
+   SET_BOTTOM_BORDER_SLICE,
+   SET_LEFT_BORDER_SLICE,
+   SET_REPEAT
  } from "../constants/action-types";
 
 /**
@@ -56,6 +61,11 @@ export function setFifthStrokeNumber(payload) {
 * Action creators for border image settings
 */
 
+// repeat
+export function setRepeat(payload) {
+  return { type: SET_REPEAT, payload }
+}
+
 // border width
 export function setTopBorderWidth(payload) {
   return { type: SET_TOP_BORDER_WIDTH, payload }
@@ -88,4 +98,21 @@ export function setBottomBorderOutset(payload) {
 
 export function setLeftBorderOutset(payload) {
   return { type: SET_LEFT_BORDER_OUTSET, payload }
+}
+
+// border slice
+export function setTopBorderSlice(payload) {
+  return { type: SET_TOP_BORDER_SLICE, payload }
+}
+
+export function setRightBorderSlice(payload) {
+  return { type: SET_RIGHT_BORDER_SLICE, payload }
+}
+
+export function setBottomBorderSlice(payload) {
+  return { type: SET_BOTTOM_BORDER_SLICE, payload }
+}
+
+export function setLeftBorderSlice(payload) {
+  return { type: SET_LEFT_BORDER_SLICE, payload }
 }
