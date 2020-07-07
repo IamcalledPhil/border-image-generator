@@ -12,6 +12,7 @@ export const SET_FIFTH_STROKE_NUMBER = "SET_FIFTH_STROKE_NUMBER";
 // border image settings action types
 
 export const SET_REPEAT = "SET_REPEAT";
+export const SET_UNIT = "SET_UNIT";
 
 export const SET_TOP_BORDER_WIDTH = "SET_TOP_BORDER_WIDTH";
 export const SET_RIGHT_BORDER_WIDTH = "SET_RIGHT_BORDER_WIDTH";

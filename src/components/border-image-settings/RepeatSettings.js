@@ -23,7 +23,6 @@ const RepeatSettings = () => {
             <option value="round">round</option>
             <option value="space">space</option>
       </select>
-      <label htmlFor={"repeat"}>Repeat type</label>
     </div>
     </section>
   )

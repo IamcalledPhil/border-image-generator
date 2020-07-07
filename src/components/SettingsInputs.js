@@ -1,4 +1,5 @@
 import React from 'react';
+
 import '../styles/settings-inputs.scss';
 
 const SettingsSlider = props => {
@@ -18,11 +19,11 @@ const SettingsSlider = props => {
   )
 };
 
-const SettingsTextEntry = props => {
-  const step = props.step || 0.1;
+const SettingsNumberEntry = props => {
+  const step = props.step || 1;
   return (
     <div className='settings-text-entry'>
-      <input type="text"
+      <input type="number"
         value={props.value} 
         id={props.position+props.type} 
         step={step}
@@ -32,6 +33,6 @@ const SettingsTextEntry = props => {
   )
 };
 
-export  {SettingsSlider, SettingsTextEntry};
+export  {SettingsSlider, SettingsNumberEntry};
 
  

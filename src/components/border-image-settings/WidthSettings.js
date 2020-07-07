@@ -5,7 +5,7 @@ import {setTopBorderWidth,
         setBottomBorderWidth,
         setLeftBorderWidth,
 } from '../../actions';
-import  {SettingsTextEntry} from '../SettingsInputs';
+import  {SettingsNumberEntry} from '../SettingsInputs';
 import '../../styles/border-image-settings.scss';
 
 const WidthSettings = () => {
@@ -33,25 +33,25 @@ const WidthSettings = () => {
   return (
     <section className="width-settings">
       <h2>Width</h2>
-      <SettingsTextEntry
+      <SettingsNumberEntry
         type="width"
         position="top"
         value={borderWidth.top}
         onChange={handleSetBorderWidth}
         label="Top"/>
-      <SettingsTextEntry
+      <SettingsNumberEntry
         type="width"
         position="right"
         value={borderWidth.right}
         onChange={handleSetBorderWidth}
         label="Right"/>
-      <SettingsTextEntry
+      <SettingsNumberEntry
         type="width"
         position="bottom"
         value={borderWidth.bottom}
         onChange={handleSetBorderWidth}
         label="Bottom"/>
-      <SettingsTextEntry
+      <SettingsNumberEntry
         type="width"
         position="left"
         value={borderWidth.left}

@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { useSelector } from "react-redux";
+import UnitSettings from './UnitSettings';
 import WidthSettings from './WidthSettings';
 import OutsetSettings from './OutsetSettings';
 import SliceSettings from './SliceSettings';
@@ -10,16 +12,17 @@ import '../../styles/border-image-settings.scss';
 const BorderImageSettings = () => {
   const svgURI = useSelector(state => state.imageCreator.svgURI);
   const imageColor = useSelector(state => state.imageCreator.imageColor);
+
+  const unit = useSelector(state => state.borderImage.unit);
   const borderRepeat = useSelector(state => state.borderImage.borderImageRepeat);
   const borderWidth = useSelector(state => state.borderImage.borderWidth);
   const borderOutset = useSelector(state => state.borderImage.borderImageOutset);
   const borderSlice = useSelector(state => state.borderImage.borderImageSlice);
-  console.log(borderRepeat);
   const demoDivStyle = {
     "borderStyle": "solid",
-    "borderWidth": `${borderWidth.top} ${borderWidth.right} ${borderWidth.bottom} ${borderWidth.left}`,
+    "borderImageWidth": `${borderWidth.top}${unit} ${borderWidth.right}${unit} ${borderWidth.bottom}${unit} ${borderWidth.left}${unit}`,
     "borderImageSource": `url(${svgURI})`,
-    "borderImageOutset": `${borderOutset.top} ${borderOutset.right} ${borderOutset.bottom} ${borderOutset.left}`,
+    "borderImageOutset": `${borderOutset.top}${unit} ${borderOutset.right}${unit} ${borderOutset.bottom}${unit} ${borderOutset.left}${unit}`,
     "borderImageSlice": `${borderSlice.top} ${borderSlice.right} ${borderSlice.bottom} ${borderSlice.left}`,
     "borderImageRepeat": `${borderRepeat} ${borderRepeat}`,
     // should be able to set background color too in case don't want outset
@@ -29,10 +32,22 @@ const BorderImageSettings = () => {
   return (
     <div className="border-image-settings">
       <div className="demo-div" style={demoDivStyle}></div>
-      <WidthSettings />
-      <OutsetSettings />
+      <UnitSettings/>
+      <WidthSettings/>
+      <OutsetSettings/>
       <SliceSettings/>
       <RepeatSettings/>
+      <div className="border-settings-text">
+        <h3>CSS code</h3>
+        <code>
+          border-width: {demoDivStyle.borderWidth};<br/>
+          border-image-slice: {demoDivStyle.borderImageSlice};<br/>
+          border-image-outset: {demoDivStyle.borderImageOutset};<br/>
+          border-image-repeat: {demoDivStyle.borderImageRepeat};<br/>
+          border-style: {demoDivStyle.borderStyle};<br/>
+          background-color: {demoDivStyle.backgroundColor};<br/>
+        </code>
+      </div>
     </div>
   )
 };

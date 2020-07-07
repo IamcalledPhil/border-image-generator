@@ -154,7 +154,7 @@ class ImageCreator extends React.Component {
             <Edge side="bottom" rectConfig={this.rectConfig}/>
             <Edge side="left" rectConfig={this.rectConfig}/>
           </svg>
-          <a href={this.props.svgURI} onClick={this.handleSVGUriChange} download>Download</a>
+          <a href={this.props.svgURI} onClick={this.handleSVGUriChange} download>Download image</a>
 
         </section>
 
@@ -209,7 +209,7 @@ class ImageCreator extends React.Component {
             onChange={this.handleSetStrokeNumber}
             label="Number of type 5 strokes per side"/>
             <div>
-              <label for="colorPicker">Color:</label>
+              <label htmlFor="colorPicker">Color:</label>
                 <input type="color" id="colorPicker" name="colorPicker"
                   onChange={this.handleImageColorChange}
                   value={this.props.imageColor}/>

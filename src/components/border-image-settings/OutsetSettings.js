@@ -5,7 +5,7 @@ import {setTopBorderOutset,
         setBottomBorderOutset,
         setLeftBorderOutset,
 } from '../../actions';
-import  {SettingsTextEntry} from '../SettingsInputs';
+import  {SettingsNumberEntry} from '../SettingsInputs';
 import '../../styles/border-image-settings.scss';
 
 const OutsetSettings = () => {
@@ -33,25 +33,25 @@ const OutsetSettings = () => {
   return (
     <section className="outset-settings">
       <h2>Outset</h2>
-      <SettingsTextEntry
+      <SettingsNumberEntry
         type="outset"
         position="top"
         value={borderOutset.top}
         onChange={handleSetBorderOutset}
         label="Top"/>
-      <SettingsTextEntry
+      <SettingsNumberEntry
         type="outset"
         position="right"
         value={borderOutset.right}
         onChange={handleSetBorderOutset}
         label="Right"/>
-      <SettingsTextEntry
+      <SettingsNumberEntry
         type="outset"
         position="bottom"
         value={borderOutset.bottom}
         onChange={handleSetBorderOutset}
         label="Bottom"/>
-      <SettingsTextEntry
+      <SettingsNumberEntry
         type="outset"
         position="left"
         value={borderOutset.left}

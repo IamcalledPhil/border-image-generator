@@ -19,7 +19,8 @@ import { SET_SVG_URI,
    SET_RIGHT_BORDER_SLICE,
    SET_BOTTOM_BORDER_SLICE,
    SET_LEFT_BORDER_SLICE,
-   SET_REPEAT
+   SET_REPEAT,
+   SET_UNIT
  } from "../constants/action-types";
 
 /**
@@ -65,6 +66,11 @@ export function setFifthStrokeNumber(payload) {
 /**
 * Action creators for border image settings
 */
+
+//set unit
+export function setUnit(payload) {
+  return { type: SET_UNIT, payload }
+}
 
 // repeat
 export function setRepeat(payload) {

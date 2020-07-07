@@ -11,29 +11,31 @@ import {
   SET_RIGHT_BORDER_SLICE,
   SET_BOTTOM_BORDER_SLICE,
   SET_LEFT_BORDER_SLICE,
-  SET_REPEAT
+  SET_REPEAT,
+  SET_UNIT
 } from "../constants/action-types";
 
 const initialState = {
   borderWidth: { 
-      top: "50px",
-      right: "50px",
-      bottom: "50px",
-      left: "50px"
+      top: 50,
+      right: 50,
+      bottom: 50,
+      left: 50
     },
     borderImageOutset: { 
-      top: "50px",
-      right: "50px",
-      bottom: "50px",
-      left: "50px"
+      top: 50,
+      right: 50,
+      bottom: 50,
+      left: 50
     },
     borderImageSlice: { 
-      top: "110",
-      right: "110",
-      bottom: "110",
-      left: "110"
+      top: 110,
+      right: 110,
+      bottom: 110,
+      left: 110
     },
-    borderImageRepeat: "stretch"
+    borderImageRepeat: "stretch",
+    unit: 'px'
 };
   
 /**
@@ -132,7 +134,11 @@ const initialState = {
       return {...state, 
         borderImageRepeat: action.payload
       };
-    } 
+    } else if (action.type === SET_UNIT) {
+      return {...state, 
+        unit: action.payload
+      };
+    }
     return state;
   }
 

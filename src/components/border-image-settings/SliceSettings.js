@@ -5,7 +5,7 @@ import {setTopBorderSlice,
         setBottomBorderSlice,
         setLeftBorderSlice,
 } from '../../actions';
-import  {SettingsTextEntry} from '../SettingsInputs';
+import  {SettingsNumberEntry} from '../SettingsInputs';
 import '../../styles/border-image-settings.scss';
 
 const SliceSettings = () => {
@@ -33,25 +33,25 @@ const SliceSettings = () => {
   return (
     <section className="slice-settings">
       <h2>Slice</h2>
-      <SettingsTextEntry
+      <SettingsNumberEntry
         type="slice"
         position="top"
         value={borderSlice.top}
         onChange={handleSetBorderSlice}
         label="Top"/>
-      <SettingsTextEntry
+      <SettingsNumberEntry
         type="slice"
         position="right"
         value={borderSlice.right}
         onChange={handleSetBorderSlice}
         label="Right"/>
-      <SettingsTextEntry
+      <SettingsNumberEntry
         type="slice"
         position="bottom"
         value={borderSlice.bottom}
         onChange={handleSetBorderSlice}
         label="Bottom"/>
-      <SettingsTextEntry
+      <SettingsNumberEntry
         type="slice"
         position="left"
         value={borderSlice.left}
