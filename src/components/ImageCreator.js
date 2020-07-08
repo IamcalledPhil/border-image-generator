@@ -19,7 +19,7 @@ import {
         translateEdge
       } from '../modules/svg-helpers';
 import { SettingsSlider } from './SettingsInputs';
-
+import InteractiveSliceSlider from './InteractiveSliceSlider';
 
 
 const BrushStroke = props => {
@@ -153,6 +153,7 @@ class ImageCreator extends React.Component {
             <Edge side="right" rectConfig={this.rectConfig}/>
             <Edge side="bottom" rectConfig={this.rectConfig}/>
             <Edge side="left" rectConfig={this.rectConfig}/>
+            <InteractiveSliceSlider/>
           </svg>
           <a href={this.props.svgURI} onClick={this.handleSVGUriChange} download>Download image</a>
 

@@ -13,6 +13,14 @@
     height: 500px;
     width: 500px;
     border: 1px solid black;
+
+    .slider-top:hover {
+      cursor: grab;
+    }
+    
+    .slider-top {
+      background-color: blue;
+    }
   }
 }
 
