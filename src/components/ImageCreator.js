@@ -83,6 +83,8 @@ class ImageCreator extends React.Component {
   constructor(props) {
     super(props);
     this.downloadbleSVG = React.createRef();
+    this.viewBoxHeight = 500;
+    this.viewBoxWidth = 500;
     this.rectConfig={
       height: 300,
       width: 300, 
@@ -142,7 +144,7 @@ class ImageCreator extends React.Component {
     return (
       <div className="image-creator">
         <section className="canvas-container">
-          <svg viewBox="0 0 500 500"ref={this.downloadbleSVG}>
+          <svg viewBox={`0 0 ${this.viewBoxWidth} ${this.viewBoxHeight}`}ref={this.downloadbleSVG}>
             <rect 
               x={this.rectConfig.x} 
               y={this.rectConfig.y} 
@@ -153,11 +155,10 @@ class ImageCreator extends React.Component {
             <Edge side="right" rectConfig={this.rectConfig}/>
             <Edge side="bottom" rectConfig={this.rectConfig}/>
             <Edge side="left" rectConfig={this.rectConfig}/>
-            <InteractiveSliceSlider/>
           </svg>
-          <a href={this.props.svgURI} onClick={this.handleSVGUriChange} download>Download image</a>
-
+          <InteractiveSliceSlider parentHeight={this.viewBoxHeight} parentWidth={this.viewBoxWidth}/>
         </section>
+        <a href={this.props.svgURI} onClick={this.handleSVGUriChange} download>Download image</a>
 
         <section className="stroke-settings">
           <SettingsSlider
