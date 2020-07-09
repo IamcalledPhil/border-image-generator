@@ -12,18 +12,20 @@ const SliceSettings = () => {
   const borderSlice = useSelector(state => state.borderImage.borderImageSlice);
   const dispatch = useDispatch();
   const handleSetBorderSlice = (event) => {
+    const intValue = parseInt(event.target.value);
+
     switch (event.target.id){
       case "topslice":
-        dispatch(setTopBorderSlice(event.target.value));
+        dispatch(setTopBorderSlice(intValue));
         break;
       case "rightslice":
-        dispatch(setRightBorderSlice(event.target.value));
+        dispatch(setRightBorderSlice(intValue));
         break;
       case "bottomslice":
-        dispatch(setBottomBorderSlice(event.target.value));
+        dispatch(setBottomBorderSlice(intValue));
         break;
       case "leftslice":
-        dispatch(setLeftBorderSlice(event.target.value));
+        dispatch(setLeftBorderSlice(intValue));
         break;
       default:
         console.log("unrecognised side for border outset");

@@ -22,7 +22,7 @@ const SettingsSlider = props => {
 const SettingsNumberEntry = props => {
   const step = props.step || 1;
   return (
-    <div className='settings-text-entry'>
+    <div className='settings-number-entry'>
       <input type="number"
         value={props.value} 
         id={props.position+props.type} 

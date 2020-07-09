@@ -40,7 +40,7 @@ const BorderImageSettings = () => {
       <div className="border-settings-text">
         <h3>CSS code</h3>
         <code>
-          border-width: {demoDivStyle.borderWidth};<br/>
+          border-image-width: {demoDivStyle.borderImageWidth};<br/>
           border-image-slice: {demoDivStyle.borderImageSlice};<br/>
           border-image-outset: {demoDivStyle.borderImageOutset};<br/>
           border-image-repeat: {demoDivStyle.borderImageRepeat};<br/>

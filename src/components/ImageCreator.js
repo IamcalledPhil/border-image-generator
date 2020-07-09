@@ -19,7 +19,7 @@ import {
         translateEdge
       } from '../modules/svg-helpers';
 import { SettingsSlider } from './SettingsInputs';
-import InteractiveSliceSlider from './InteractiveSliceSlider';
+import SliceIndicator from './SliceIndicator';
 
 
 const BrushStroke = props => {
@@ -156,7 +156,7 @@ class ImageCreator extends React.Component {
             <Edge side="bottom" rectConfig={this.rectConfig}/>
             <Edge side="left" rectConfig={this.rectConfig}/>
           </svg>
-          <InteractiveSliceSlider parentHeight={this.viewBoxHeight} parentWidth={this.viewBoxWidth}/>
+          <SliceIndicator />
         </section>
         <a href={this.props.svgURI} onClick={this.handleSVGUriChange} download>Download image</a>
 
@@ -233,7 +233,7 @@ function select(state) {
     secondStrokeNumber: state.imageCreator.secondStrokeNumber,
     thirdStrokeNumber: state.imageCreator.thirdStrokeNumber,
     fourthStrokeNumber: state.imageCreator.fourthStrokeNumber,
-    fithStrokeNumber: state.imageCreator.fithStrokeNumber,
+    fithStrokeNumber: state.imageCreator.fithStrokeNumber
   };
 }
 
