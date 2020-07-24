@@ -158,7 +158,6 @@ class ImageCreator extends React.Component {
           </svg>
           <SliceIndicator />
         </section>
-        <a href={this.props.svgURI} onClick={this.handleSVGUriChange} download>Download image</a>
 
         <section className="stroke-settings">
           <SettingsSlider

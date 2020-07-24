@@ -1,11 +1,11 @@
 .image-creator {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .canvas-container {
-  height: 500px;
-  width: 500px;
+  height: 300px;
+  width: 300px;
   margin: 50px auto;
   position: relative;
 

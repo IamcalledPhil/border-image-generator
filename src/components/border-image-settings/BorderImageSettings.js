@@ -31,22 +31,28 @@ const BorderImageSettings = () => {
 
   return (
     <div className="border-image-settings">
-      <div className="demo-div" style={demoDivStyle}></div>
-      <UnitSettings/>
-      <WidthSettings/>
-      <OutsetSettings/>
-      <SliceSettings/>
-      <RepeatSettings/>
-      <div className="border-settings-text">
-        <h3>CSS code</h3>
-        <code>
-          border-image-width: {demoDivStyle.borderImageWidth};<br/>
-          border-image-slice: {demoDivStyle.borderImageSlice};<br/>
-          border-image-outset: {demoDivStyle.borderImageOutset};<br/>
-          border-image-repeat: {demoDivStyle.borderImageRepeat};<br/>
-          border-style: {demoDivStyle.borderStyle};<br/>
-          background-color: {demoDivStyle.backgroundColor};<br/>
-        </code>
+      <div className="output">
+        <div className="demo-div" style={demoDivStyle}></div>
+        <div className="border-settings-text">
+          <a href={svgURI}  download>Download image</a>
+
+          <h3>CSS code</h3>
+          <code>
+            border-image-width: {demoDivStyle.borderImageWidth};<br/>
+            border-image-slice: {demoDivStyle.borderImageSlice};<br/>
+            border-image-outset: {demoDivStyle.borderImageOutset};<br/>
+            border-image-repeat: {demoDivStyle.borderImageRepeat};<br/>
+            border-style: {demoDivStyle.borderStyle};<br/>
+            background-color: {demoDivStyle.backgroundColor};<br/>
+          </code>
+        </div>
+      </div>
+      <div className="input">
+        <UnitSettings/>
+        <WidthSettings/>
+        <OutsetSettings/>
+        <SliceSettings/>
+        <RepeatSettings/>
       </div>
     </div>
   )

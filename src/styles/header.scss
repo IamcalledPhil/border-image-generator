@@ -1,0 +1,13 @@
+.main-header {
+  display: grid;
+  grid-template-columns: 1fr 70% 1fr;
+}
+
+.main-header .header-title {
+  grid-area: 1 / 2;
+  margin: 1em auto;
+}
+
+.main-header .external-links {
+  grid-area: 1 / 3;
+}

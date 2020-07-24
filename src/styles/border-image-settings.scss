@@ -1,13 +1,20 @@
 .border-image-settings {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: wrap;
   margin: 2em;
-  width: 50vw;
+  width: min-content;
 
-  .demo-div {
-    width: 40vw;
-    height: 40vw;
-    margin: 2em;
+  .output {
+    .demo-div {
+      width: 30vw;
+      height: 30vw;
+      margin: 2em;
+    }
   }
+
+  .input {
+
+  }
+
 }
