@@ -32,11 +32,13 @@ const BorderImageSettings = () => {
   return (
     <div className="border-image-settings">
       <div className="output">
+        <h1>Result:</h1>
         <div className="demo-div" style={demoDivStyle}></div>
-        <div className="border-settings-text">
-          <a href={svgURI}  download>Download image</a>
+        <a href={svgURI}  download>Download image</a>
 
-          <h3>CSS code</h3>
+        <h3>CSS code</h3>
+        <div className="border-settings-text">
+
           <code>
             border-image-width: {demoDivStyle.borderImageWidth};<br/>
             border-image-slice: {demoDivStyle.borderImageSlice};<br/>
@@ -48,11 +50,14 @@ const BorderImageSettings = () => {
         </div>
       </div>
       <div className="input">
-        <UnitSettings/>
-        <WidthSettings/>
-        <OutsetSettings/>
-        <SliceSettings/>
-        <RepeatSettings/>
+        <h1>Border Settings</h1>
+        <div className="input-content">
+          <UnitSettings/>
+          <WidthSettings/>
+          <OutsetSettings/>
+          <SliceSettings/>
+          <RepeatSettings/>
+        </div>
       </div>
     </div>
   )

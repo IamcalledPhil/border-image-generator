@@ -143,6 +143,7 @@ class ImageCreator extends React.Component {
   render () {
     return (
       <div className="image-creator">
+        <h1>Reference Image Creator</h1>
         <section className="canvas-container">
           <svg viewBox={`0 0 ${this.viewBoxWidth} ${this.viewBoxHeight}`}ref={this.downloadbleSVG}>
             <rect 
@@ -160,6 +161,12 @@ class ImageCreator extends React.Component {
         </section>
 
         <section className="stroke-settings">
+          <div className="color-settings">
+              <label htmlFor="colorPicker">Color:</label>
+                <input type="color" id="colorPicker" name="colorPicker"
+                  onChange={this.handleImageColorChange}
+                  value={this.props.imageColor}/>
+            </div>
           <SettingsSlider
             type="length"
             position="stroke"
@@ -208,13 +215,7 @@ class ImageCreator extends React.Component {
             range={{min: 0, max: 10}}
             value={this.props.fifthStrokeNumber}
             onChange={this.handleSetStrokeNumber}
-            label="Number of type 5 strokes per side"/>
-            <div>
-              <label htmlFor="colorPicker">Color:</label>
-                <input type="color" id="colorPicker" name="colorPicker"
-                  onChange={this.handleImageColorChange}
-                  value={this.props.imageColor}/>
-            </div> 
+            label="Number of type 5 strokes per side"/> 
         </section>
 
       </div>

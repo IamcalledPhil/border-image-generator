@@ -31,8 +31,9 @@ const WidthSettings = () => {
   }
 
   return (
-    <section className="width-settings">
+    <section className="settings">
       <h2>Width</h2>
+      <div className="number-entries">
       <SettingsNumberEntry
         type="width"
         position="top"
@@ -57,6 +58,7 @@ const WidthSettings = () => {
         value={borderWidth.left}
         onChange={handleSetBorderWidth}
         label="Left"/>
+      </div>
     </section>
   )
 }

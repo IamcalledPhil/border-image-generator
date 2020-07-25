@@ -1,6 +1,18 @@
+@import "./styles/fonts";
+
+
 .content {
   display: flex;
   flex-direction: row;
-  padding: 0 1em; 
+  flex-wrap: wrap;
+  padding:  1em; 
   justify-content: space-around;
+}
+
+h1, h2, h3, h4, h5, p, a, button {
+  font-family: 'Lato', sans-serif;
+}
+
+h2, h3, h4 {
+  font-weight: 400;
 }

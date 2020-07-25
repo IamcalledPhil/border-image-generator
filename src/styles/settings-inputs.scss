@@ -1,6 +1,15 @@
 .settings-slider {
   display: flex;
   flex-direction: column;
+  margin-bottom: 1em;
+}
+
+.settings-number-entry {
+  margin-right: 1em;
+  width: 4rem;
+  input {
+    width: 100%;
+  }
 }
 
 .settings-text-entry {

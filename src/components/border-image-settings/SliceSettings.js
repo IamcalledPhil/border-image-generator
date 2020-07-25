@@ -33,32 +33,35 @@ const SliceSettings = () => {
   }
 
   return (
-    <section className="slice-settings">
+    <section className="settings">
       <h2>Slice</h2>
-      <SettingsNumberEntry
-        type="slice"
-        position="top"
-        value={borderSlice.top}
-        onChange={handleSetBorderSlice}
-        label="Top"/>
-      <SettingsNumberEntry
-        type="slice"
-        position="right"
-        value={borderSlice.right}
-        onChange={handleSetBorderSlice}
-        label="Right"/>
-      <SettingsNumberEntry
-        type="slice"
-        position="bottom"
-        value={borderSlice.bottom}
-        onChange={handleSetBorderSlice}
-        label="Bottom"/>
-      <SettingsNumberEntry
-        type="slice"
-        position="left"
-        value={borderSlice.left}
-        onChange={handleSetBorderSlice}
-        label="Left"/>
+      <div className="number-entries">
+
+        <SettingsNumberEntry
+          type="slice"
+          position="top"
+          value={borderSlice.top}
+          onChange={handleSetBorderSlice}
+          label="Top"/>
+        <SettingsNumberEntry
+          type="slice"
+          position="right"
+          value={borderSlice.right}
+          onChange={handleSetBorderSlice}
+          label="Right"/>
+        <SettingsNumberEntry
+          type="slice"
+          position="bottom"
+          value={borderSlice.bottom}
+          onChange={handleSetBorderSlice}
+          label="Bottom"/>
+        <SettingsNumberEntry
+          type="slice"
+          position="left"
+          value={borderSlice.left}
+          onChange={handleSetBorderSlice}
+          label="Left"/>
+        </div>
     </section>
   )
 }

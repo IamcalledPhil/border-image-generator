@@ -31,32 +31,35 @@ const OutsetSettings = () => {
   }
 
   return (
-    <section className="outset-settings">
+    <section className="settings">
       <h2>Outset</h2>
-      <SettingsNumberEntry
-        type="outset"
-        position="top"
-        value={borderOutset.top}
-        onChange={handleSetBorderOutset}
-        label="Top"/>
-      <SettingsNumberEntry
-        type="outset"
-        position="right"
-        value={borderOutset.right}
-        onChange={handleSetBorderOutset}
-        label="Right"/>
-      <SettingsNumberEntry
-        type="outset"
-        position="bottom"
-        value={borderOutset.bottom}
-        onChange={handleSetBorderOutset}
-        label="Bottom"/>
-      <SettingsNumberEntry
-        type="outset"
-        position="left"
-        value={borderOutset.left}
-        onChange={handleSetBorderOutset}
-        label="Left"/>
+      <div className="number-entries">
+
+        <SettingsNumberEntry
+          type="outset"
+          position="top"
+          value={borderOutset.top}
+          onChange={handleSetBorderOutset}
+          label="Top"/>
+        <SettingsNumberEntry
+          type="outset"
+          position="right"
+          value={borderOutset.right}
+          onChange={handleSetBorderOutset}
+          label="Right"/>
+        <SettingsNumberEntry
+          type="outset"
+          position="bottom"
+          value={borderOutset.bottom}
+          onChange={handleSetBorderOutset}
+          label="Bottom"/>
+        <SettingsNumberEntry
+          type="outset"
+          position="left"
+          value={borderOutset.left}
+          onChange={handleSetBorderOutset}
+          label="Left"/>
+        </div>
     </section>
   )
 }

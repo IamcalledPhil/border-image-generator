@@ -11,7 +11,7 @@ const RepeatSettings = () => {
   }
 
   return (
-    <section className="repeat-settings">
+    <section className="settings">
       <h2>Repeat</h2>
       <div className='settings-dropdown'>
       <select
