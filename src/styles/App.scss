@@ -1,4 +1,4 @@
-@import "./styles/fonts";
+@import "./fonts";
 
 
 .content {
@@ -7,6 +7,7 @@
   flex-wrap: wrap;
   padding:  1em; 
   justify-content: space-around;
+  background-color: #c5bae2;
 }
 
 h1, h2, h3, h4, h5, p, a, button {
