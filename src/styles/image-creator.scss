@@ -1,8 +1,10 @@
+@import '_mixins';
+
 .image-creator {
   display: flex;
   flex-direction: column;
-  margin: 1em;
-  padding: 0 2em;
+  margin: 1em 0;
+  padding: 1em 2em 2em 2em;
   background-color: white;
   border-radius: 10px;
   -webkit-box-shadow:  3px 5px 7px 1px rgba(0,0,0,0.36);
@@ -40,6 +42,12 @@
 .stroke-settings {
   display: flex;
   flex-direction: column;
+  @include breakpoint(sml) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 70vw;
+    justify-content: space-evenly;
+  }
   width: 15em;
   margin: 1em auto;
 

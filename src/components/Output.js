@@ -27,21 +27,26 @@ const Output = () => {
   return (
       <div className="output">
         <h1>Result:</h1>
-        <div className="demo-div" style={demoDivStyle}></div>
-        <a href={svgURI}  download>Download image</a>
+        <div className="output-content">
+          <div className="demo-div" style={demoDivStyle}></div>
+          <a href={svgURI}  download>Download image</a>
 
-        <h3>CSS code</h3>
-        <div className="border-settings-text">
+          <div className="output-code">
+            <h3>CSS code</h3>
+            <div className="border-settings-text">
 
-          <code>
-            border-image-width: {demoDivStyle.borderImageWidth};<br/>
-            border-image-slice: {demoDivStyle.borderImageSlice};<br/>
-            border-image-outset: {demoDivStyle.borderImageOutset};<br/>
-            border-image-repeat: {demoDivStyle.borderImageRepeat};<br/>
-            border-style: {demoDivStyle.borderStyle};<br/>
-            background-color: {demoDivStyle.backgroundColor};<br/>
-          </code>
+              <code>
+                border-image-width: {demoDivStyle.borderImageWidth};<br/>
+                border-image-slice: {demoDivStyle.borderImageSlice};<br/>
+                border-image-outset: {demoDivStyle.borderImageOutset};<br/>
+                border-image-repeat: {demoDivStyle.borderImageRepeat};<br/>
+                border-style: {demoDivStyle.borderStyle};<br/>
+                background-color: {demoDivStyle.backgroundColor};<br/>
+              </code>
+            </div>
+          </div>
         </div>
+        
       </div>
       
   )

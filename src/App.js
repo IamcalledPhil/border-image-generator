@@ -14,9 +14,10 @@ class App extends React.Component {
         <Header/>
         <div className="content">
           <ImageCreator/>
-          <Output/>
-          <BorderImageSettings/>
-
+          <div class="settings-output-container">
+            <Output/>
+            <BorderImageSettings/>
+          </div>
         </div>
       </div>
     );

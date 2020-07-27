@@ -1,13 +1,24 @@
-@import "./fonts";
-
+@import "_fonts";
+@import "_mixins";
 
 .content {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  @include breakpoint(sml) {
+    flex-wrap: wrap;
+
+  }
   padding:  1em; 
-  justify-content: space-around;
+  justify-content: center;
   background-color: #c5bae2;
+
+  .settings-output-creator {
+    display: flex;
+    flex-direction: column;
+    @include breakpoint(supersml) {
+      width: 100%
+    }
+  }
 }
 
 h1, h2, h3, h4, h5, p, a, button {
