@@ -22,7 +22,7 @@ import Logo from '../res/borderlogo.svg';
 const Header = () => {
 
   // obviously replace this when go live!
-  const shareUrl = 'www.google.com';
+  const shareUrl = 'http://border-painter.surge.sh/';
  
   return (
     <header className='main-header'>
