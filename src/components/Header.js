@@ -37,8 +37,10 @@ const Header = () => {
         <LinkedinShareButton url={shareUrl}> <LinkedinIcon size={32} round={true} /></LinkedinShareButton>
       </div>
       <a className="my-website-link" href="http://philcohn.com/" target="_blank" rel="noopener noreferrer" >
-        philcohn.com
+        Check out my homepage!
       </a>
+      <h2 className="app-description">Create and download custom paintbrush-style border images for your HTML elements,
+       and generate CSS border-image values. </h2>
     </header>
   )
 };

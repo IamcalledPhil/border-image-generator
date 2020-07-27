@@ -1,5 +1,7 @@
 import React from 'react';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faDownload } from '@fortawesome/free-solid-svg-icons'
+ 
 import { useSelector } from "react-redux";
 
 import '../styles/output.scss';
@@ -28,8 +30,10 @@ const Output = () => {
       <div className="output">
         <h1>Result:</h1>
         <div className="output-content">
-          <div className="demo-div" style={demoDivStyle}></div>
-          <a href={svgURI}  download>Download image</a>
+          <div className="demo-div" style={demoDivStyle}>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          </div>
+          <a href={svgURI}  download><FontAwesomeIcon icon={faDownload} />Download image</a>
 
           <div className="output-code">
             <h3>CSS code</h3>

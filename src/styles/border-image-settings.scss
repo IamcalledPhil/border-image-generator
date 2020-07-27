@@ -29,10 +29,10 @@
 
 
 .settings {
-  padding: 0.5em 1em;
+  padding: 0em 1em;
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 6rem auto;
+  grid-template-rows: min-content auto;
   @include breakpoint(supersml) {
     grid-template-rows: 4rem auto;
   }
